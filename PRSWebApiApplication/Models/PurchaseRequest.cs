@@ -29,5 +29,6 @@ namespace PRSWebApiApplication.Models
         public int? UpdatedByUser { get; set; }
         public int UserId { get; set; }
         public virtual User User { get; set; }
+        public virtual List<PurchaseRequestLineItem> PurchaseRequestLineItems { get; set; }
     }
 }

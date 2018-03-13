@@ -73,13 +73,14 @@ namespace PRSWebApiApplication.Controllers
             {
                 return Json(new JsonMessage("Failure", ex.Message), JsonRequestBehavior.AllowGet);
             }
+            CalculatePurchaseRequestTotal(purchaseRequestLineItem.PurchaseRequestId);
             return Json(new JsonMessage("Success", "PurchaseRequestLineItem was changed."));
         }
 
         // PurchaseRequestLineItem/Remove [POST]
-        public ActionResult Remove([System.Web.Http.FromBody] PurchaseRequestLineItem purchaseRequest)
+        public ActionResult Remove([System.Web.Http.FromBody] PurchaseRequestLineItem purchaseRequestLineItem)
         {
-            PurchaseRequestLineItem purchaseRequestLineItem2 = db.PurchaseRequestLineItems.Find(purchaseRequest.Id);
+            PurchaseRequestLineItem purchaseRequestLineItem2 = db.PurchaseRequestLineItems.Find(purchaseRequestLineItem.Id);
             db.PurchaseRequestLineItems.Remove(purchaseRequestLineItem2);
             try
             {
@@ -90,12 +91,17 @@ namespace PRSWebApiApplication.Controllers
             {
                 return Json(new JsonMessage("Failure", ex.Message), JsonRequestBehavior.AllowGet);
             }
+            CalculatePurchaseRequestTotal(purchaseRequestLineItem2.PurchaseRequestId);
             return Json(new JsonMessage("Success", "PurchaseRequestLineItem was deleted."));
         }
 
         public ActionResult CalculatePurchaseRequestTotal(int purchaseRequestId)
         {
+            var db = new AppDbContext();  //seems to resolve a caching issue in EntityFramework
+
             decimal total = 0;
+
+            var pr = db.PurchaseRequests.Find(purchaseRequestId);
 
             var purchaseRequestLineItems = db.PurchaseRequestLineItems.Where(p => p.PurchaseRequestId == purchaseRequestId);
 

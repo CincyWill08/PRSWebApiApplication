@@ -12,6 +12,15 @@ namespace PRSWebApiApplication.Controllers
     {
         private AppDbContext db = new AppDbContext();
 
+        public ActionResult Login(string username, string password)
+        {
+            var loginVerification = db.Users.Where(u => (u.UserName == username) && (u.Password == password));
+            if (loginVerification == null) {
+                return Json(new JsonMessage("Failure", "Username or password is incorrect.  Try again."), JsonRequestBehavior.AllowGet);
+            }
+            return Json(new JsonMessage("Success", "Login is successful"), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult List()
         {
             return new JsonNetResult { Data = db.Users.ToList() };

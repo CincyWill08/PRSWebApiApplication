@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,6 +19,7 @@ namespace PRSWebApiApplication.Models
         public DateTime? DateUpdated { get; set; }
         public int? UpdatedByUser { get; set; }
         public int PurchaseRequestId { get; set; }
+        [JsonIgnore]
         public virtual PurchaseRequest PurchaseRequest { get; set; }
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
