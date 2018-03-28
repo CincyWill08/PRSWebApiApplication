@@ -58,6 +58,7 @@ namespace PRSWebApiApplication.Controllers
         // Product/Change [POST]
         public ActionResult Change([System.Web.Http.FromBody] Product product)
         {
+            if (product.Name == null) return new EmptyResult();
             Product product2 = db.Products.Find(product.Id);
             product2.VendorId = product.VendorId;
             product2.PartNumber = product.PartNumber;
@@ -84,6 +85,7 @@ namespace PRSWebApiApplication.Controllers
         // User/Remove [POST]
         public ActionResult Remove([System.Web.Http.FromBody] Product product)
         {
+            if (product.Name == null) return new EmptyResult();
             Product product2 = db.Products.Find(product.Id);
             db.Products.Remove(product2);
             try

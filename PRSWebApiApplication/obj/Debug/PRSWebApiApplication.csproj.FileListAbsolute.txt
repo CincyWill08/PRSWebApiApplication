@@ -56,3 +56,4 @@ c:\repos\PRSWebApiApplication\PRSWebApiApplication\obj\Debug\PRSWebApiApplicatio
 c:\repos\PRSWebApiApplication\PRSWebApiApplication\obj\Debug\PRSWebApiApplication.Migrations.AddedProductTable.resources
 c:\repos\PRSWebApiApplication\PRSWebApiApplication\obj\Debug\PRSWebApiApplication.Migrations.AddedPReqandPReqLineItemDBs.resources
 c:\repos\PRSWebApiApplication\PRSWebApiApplication\obj\Debug\PRSWebApiApplication.Migrations.RemovedSubmittedDateonPurReqtable.resources
+c:\repos\PRSWebApiApplication\PRSWebApiApplication\obj\Debug\PRSWebApiApplication.csproj.CopyComplete

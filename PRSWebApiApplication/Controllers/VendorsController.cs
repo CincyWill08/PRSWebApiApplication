@@ -55,6 +55,7 @@ namespace PRSWebApiApplication.Controllers
         // Vendor/Change [POST]
         public ActionResult Change([System.Web.Http.FromBody] Vendor vendor)
         {
+            if (vendor.Name == null) return new EmptyResult();
             Vendor vendor2 = db.Vendors.Find(vendor.Id);
             vendor2.Code = vendor.Code;
             vendor2.Name = vendor.Name;
@@ -84,6 +85,7 @@ namespace PRSWebApiApplication.Controllers
         // User/Remove [POST]
         public ActionResult Remove([System.Web.Http.FromBody] Vendor vendor)
         {
+            if (vendor.Name == null) return new EmptyResult();
             Vendor vendor2 = db.Vendors.Find(vendor.Id);
             db.Vendors.Remove(vendor2);
             try

@@ -60,6 +60,7 @@ namespace PRSWebApiApplication.Controllers
         // PurchaseRequest/Change [POST]
         public ActionResult Change([System.Web.Http.FromBody] PurchaseRequest purchaseRequest)
         {
+            if (purchaseRequest.Description == null) return new EmptyResult();
             PurchaseRequest purchaseRequest2 = db.PurchaseRequests.Find(purchaseRequest.Id);
             purchaseRequest2.UserId = purchaseRequest.UserId;
             purchaseRequest2.Description = purchaseRequest.Description;
@@ -86,6 +87,7 @@ namespace PRSWebApiApplication.Controllers
         // PurchaseRequest/Remove [POST]
         public ActionResult Remove([System.Web.Http.FromBody] PurchaseRequest purchaseRequest)
         {
+            if (purchaseRequest.Description == null) return new EmptyResult();
             PurchaseRequest purchaseRequest2 = db.PurchaseRequests.Find(purchaseRequest.Id);
             db.PurchaseRequests.Remove(purchaseRequest2);
             try

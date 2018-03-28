@@ -44,12 +44,12 @@ namespace PRSWebApiApplication.Controllers
             try
             {
                 db.SaveChanges();
+                CalculatePurchaseRequestTotal(purchaseRequestLineItem.PurchaseRequestId);
             }
             catch (Exception ex)
             {
                 return Json(new JsonMessage("Failure", ex.Message), JsonRequestBehavior.AllowGet);
             }
-            CalculatePurchaseRequestTotal(purchaseRequestLineItem.PurchaseRequestId);
             return Json(new JsonMessage("Success", "PurchaseRequestLineItem was created."));           
         }
 
@@ -67,13 +67,12 @@ namespace PRSWebApiApplication.Controllers
             try
             {
                 db.SaveChanges();
-
+                CalculatePurchaseRequestTotal(purchaseRequestLineItem.PurchaseRequestId);
             }
             catch (Exception ex)
             {
                 return Json(new JsonMessage("Failure", ex.Message), JsonRequestBehavior.AllowGet);
-            }
-            CalculatePurchaseRequestTotal(purchaseRequestLineItem.PurchaseRequestId);
+            }          
             return Json(new JsonMessage("Success", "PurchaseRequestLineItem was changed."));
         }
 
@@ -85,17 +84,17 @@ namespace PRSWebApiApplication.Controllers
             try
             {
                 db.SaveChanges();
-
+                CalculatePurchaseRequestTotal(purchaseRequestLineItem2.PurchaseRequestId);
             }
             catch (Exception ex)
             {
                 return Json(new JsonMessage("Failure", ex.Message), JsonRequestBehavior.AllowGet);
             }
-            CalculatePurchaseRequestTotal(purchaseRequestLineItem2.PurchaseRequestId);
+            
             return Json(new JsonMessage("Success", "PurchaseRequestLineItem was deleted."));
         }
 
-        public ActionResult CalculatePurchaseRequestTotal(int purchaseRequestId)
+        public void CalculatePurchaseRequestTotal(int purchaseRequestId)
         {
             var db = new AppDbContext();  //seems to resolve a caching issue in EntityFramework
 
@@ -118,9 +117,9 @@ namespace PRSWebApiApplication.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new JsonMessage("Failure in CalculatePurchaseRequestTotal", ex.Message), JsonRequestBehavior.AllowGet);
+                throw ex;             
             }
-            return Json(new JsonMessage("Success in CalculatePurchaseRequestTotal", "PurchaseRequest.Total was updated."));
+           
         }
     }
 }

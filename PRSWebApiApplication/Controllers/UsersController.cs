@@ -44,6 +44,7 @@ namespace PRSWebApiApplication.Controllers
         // /User/Create [POST]
         public ActionResult Create([System.Web.Http.FromBody] User user)
         {
+            if (user.UserName == null) return new EmptyResult();
             if (!ModelState.IsValid)
             {
                 return Json(new JsonMessage("Failure", "Model State is not valid"), JsonRequestBehavior.AllowGet);
@@ -65,6 +66,7 @@ namespace PRSWebApiApplication.Controllers
         // User/Change [POST]
         public ActionResult Change([System.Web.Http.FromBody] User user)
         {
+            if (user.UserName == null) return new EmptyResult();
             User user2 = db.Users.Find(user.Id);
             user2.UserName = user.UserName;
             user2.Password = user.Password;
@@ -93,6 +95,7 @@ namespace PRSWebApiApplication.Controllers
         // User/Remove [POST]
         public ActionResult Remove([System.Web.Http.FromBody] User user)
         {
+            if (user.UserName == null) return new EmptyResult();
             User user2 = db.Users.Find(user.Id);
             db.Users.Remove(user2);
             try
