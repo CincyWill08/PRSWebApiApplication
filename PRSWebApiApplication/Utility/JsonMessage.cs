@@ -9,11 +9,13 @@ namespace PRSWebApiApplication.Utility
     {
         public string Result { get; set; }
         public string Message { get; set; }
+        public object Data { get; set; }
 
         public JsonMessage(string Result, string Message)
         {
             this.Result = Result;
             this.Message = Message;
+            this.Data = Data;
         }
     }
 }

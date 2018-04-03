@@ -213,6 +213,10 @@
     <Compile Include="Migrations\201803112226030_Removed SubmittedDate on PurReq table.Designer.cs">
       <DependentUpon>201803112226030_Removed SubmittedDate on PurReq table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803292017566_Added Status to PurchaseRequest table.cs" />
+    <Compile Include="Migrations\201803292017566_Added Status to PurchaseRequest table.Designer.cs">
+      <DependentUpon>201803292017566_Added Status to PurchaseRequest table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Product.cs" />
@@ -223,6 +227,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\JsonMessage.cs" />
     <Compile Include="Utility\JsonNetResult.cs" />
+    <Compile Include="Utility\JSonReturnMessage.cs" />
+    <Compile Include="Utility\Msg.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -311,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803112226030_Removed SubmittedDate on PurReq table.resx">
       <DependentUpon>201803112226030_Removed SubmittedDate on PurReq table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803292017566_Added Status to PurchaseRequest table.resx">
+      <DependentUpon>201803292017566_Added Status to PurchaseRequest table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

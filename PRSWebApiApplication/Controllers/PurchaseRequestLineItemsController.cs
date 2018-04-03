@@ -56,6 +56,7 @@ namespace PRSWebApiApplication.Controllers
         // PurchaseRequestLineItem/Change [POST]
         public ActionResult Change([System.Web.Http.FromBody] PurchaseRequestLineItem purchaseRequestLineItem)
         {
+            if (purchaseRequestLineItem.Quantity == 0) return new EmptyResult();
             PurchaseRequestLineItem purchaseRequestLineItem2 = db.PurchaseRequestLineItems.Find(purchaseRequestLineItem.Id);
             purchaseRequestLineItem2.PurchaseRequestId = purchaseRequestLineItem.PurchaseRequestId;
             purchaseRequestLineItem2.ProductId = purchaseRequestLineItem.ProductId;
@@ -79,6 +80,7 @@ namespace PRSWebApiApplication.Controllers
         // PurchaseRequestLineItem/Remove [POST]
         public ActionResult Remove([System.Web.Http.FromBody] PurchaseRequestLineItem purchaseRequestLineItem)
         {
+            if (purchaseRequestLineItem.Quantity == 0) return new EmptyResult();
             PurchaseRequestLineItem purchaseRequestLineItem2 = db.PurchaseRequestLineItems.Find(purchaseRequestLineItem.Id);
             db.PurchaseRequestLineItems.Remove(purchaseRequestLineItem2);
             try

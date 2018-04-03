@@ -18,6 +18,11 @@ namespace PRSWebApiApplication.Controllers
             return new JsonNetResult { Data = db.PurchaseRequests.ToList() };
         }
 
+        public ActionResult ReviewList()
+        {
+            return new JsonNetResult { Data = db.PurchaseRequests.Where(PurchaseRequest => PurchaseRequest.Status=="REVIEW").ToList() };
+        }
+
         public ActionResult Get(int? id)
         {
             if (id == null)
@@ -41,6 +46,7 @@ namespace PRSWebApiApplication.Controllers
             }
          
             purchaseRequest.Active = true;
+            purchaseRequest.Status = "NEW";
             purchaseRequest.DateCreated = DateTime.Now;
 
             // ?? Calculate total by summing all purchase request line items?
@@ -66,6 +72,7 @@ namespace PRSWebApiApplication.Controllers
             purchaseRequest2.Description = purchaseRequest.Description;
             purchaseRequest2.Justification = purchaseRequest.Justification;
             purchaseRequest2.DeliveryMode = purchaseRequest.DeliveryMode;
+            purchaseRequest2.Status = purchaseRequest.Status; 
             purchaseRequest2.Total = purchaseRequest.Total;
             purchaseRequest2.Active = purchaseRequest.Active;
             purchaseRequest2.ReasonForRejection = purchaseRequest.ReasonForRejection;

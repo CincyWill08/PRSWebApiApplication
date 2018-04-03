@@ -19,6 +19,9 @@ namespace PRSWebApiApplication.Models
         [Required]
         [MaxLength(25)]
         public string DeliveryMode { get; set; }
+        [Required]
+        [MaxLength(10)]
+        public string Status { get; set; }
         public decimal Total { get; set; }
         [Required]
         public bool Active { get; set; }

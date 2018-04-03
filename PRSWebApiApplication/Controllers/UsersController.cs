@@ -1,5 +1,6 @@
 ﻿using PRSWebApiApplication.Models;
 using PRSWebApiApplication.Utility;
+using Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,17 @@ namespace PRSWebApiApplication.Controllers
 
         public ActionResult Login(string username, string password)
         {
-            var loginVerification = db.Users.Where(u => (u.UserName == username) && (u.Password == password));
-            if (loginVerification == null) {
-                return Json(new JsonMessage("Failure", "Username or password is incorrect.  Try again."), JsonRequestBehavior.AllowGet);
+            if (username == null || password == null)
+            {
+                return Json(new JsonMessage("Failure", "1.Username or password is incorrect.  Try again."), JsonRequestBehavior.AllowGet);
             }
-            return Json(new JsonMessage("Success", "Login is successful"), JsonRequestBehavior.AllowGet);
+            var loginVerification = db.Users.SingleOrDefault(u => u.UserName == username && u.Password == password);
+            if (loginVerification == null) {
+                return Json(new JsonMessage("Failure", "2. Username or password is incorrect.  Try again."), JsonRequestBehavior.AllowGet);
+            }
+            //return Json(new JsonMessage("Success", "Login is successful"), Data = loginVerification);
+            //return new JsonNetResult { Data = new JsonMessage ("Success", "Login is successful"), Data = loginVerification };
+            return new JsonNetResult { Data = new Msg { Result = "Success", Message = "Login Successful", Data = loginVerification } };
         }
 
         public ActionResult List()
